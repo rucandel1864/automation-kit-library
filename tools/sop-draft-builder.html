@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Free SOP Draft Builder</title>
+    <meta name="description" content="Build a simple standard operating procedure draft from structured process inputs." />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html"><span class="brand-mark">A</span><span>Automation Kit Library</span></a>
+      <nav><a href="./roi-calculator.html">ROI calculator</a><a href="../products/sop-generator.html">SOP kit</a><a href="../products/starter-bundle.html">Bundle</a></nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <h1>Free SOP draft builder.</h1>
+          <p>Turn rough process details into a copyable SOP draft. This is a structured drafting tool, not a replacement for process-owner review.</p>
+          <div class="hero-actions">
+            <a class="button secondary" href="../products/sop-generator.html">View full SOP kit</a>
+          </div>
+        </div>
+        <div class="card">
+          <h2>SOP readiness</h2>
+          <p class="price" id="readiness">Draft</p>
+          <p id="readinessNote">Fill in the fields to generate a draft.</p>
+        </div>
+      </section>
+      <section class="section split">
+        <div>
+          <h2>Process inputs</h2>
+          <p class="lead">Use one repeatable, low-risk workflow. For regulated, legal, medical, financial, safety, or compliance work, get expert review.</p>
+        </div>
+        <form class="card" id="sopForm">
+          <label>Process name <input name="name" value="Weekly client report" /></label>
+          <label>Purpose <input name="purpose" value="Prepare and send a consistent weekly client update." /></label>
+          <label>Owner <input name="owner" value="Account manager" /></label>
+          <label>Operator <input name="operator" value="Operations assistant" /></label>
+          <label>Trigger <input name="trigger" value="Every Friday morning" /></label>
+          <label>Inputs <input name="inputs" value="Client metrics, open tasks, blockers, wins, next steps" /></label>
+          <label>Tools <input name="tools" value="Project management tool, email, reporting spreadsheet" /></label>
+          <label>Steps <textarea name="steps">Collect metrics
+Review open tasks
+Summarize blockers
+Draft update
+Owner reviews
+Send to client</textarea></label>
+          <label>Quality checks <textarea name="checks">No missing blockers
+Numbers match source spreadsheet
+Next steps have owners
+Tone is concise and professional</textarea></label>
+          <label>Escalation rules <textarea name="escalation">Escalate missing data, client complaints, budget issues, security concerns, or unclear commitments.</textarea></label>
+        </form>
+      </section>
+      <section class="section split">
+        <div>
+          <h2>Copyable SOP draft</h2>
+          <p class="lead">Paste this into your docs, then have the process owner review and test it once with a real task.</p>
+          <button id="copyButton" type="button">Copy SOP</button>
+        </div>
+        <textarea id="output" readonly></textarea>
+      </section>
+    </main>
+    <footer>Automation Kit Library. For full prompts, improvement workflow, ROI worksheet, and handoff template, use the AI SOP Generator Kit.</footer>
+    <script>
+      const form = document.querySelector("#sopForm");
+      const output = document.querySelector("#output");
+      const readiness = document.querySelector("#readiness");
+      const readinessNote = document.querySelector("#readinessNote");
+      const copyButton = document.querySelector("#copyButton");
+
+      function lines(value) {
+        return String(value || "")
+          .split(/\r?\n/)
+          .map((line) => line.trim())
+          .filter(Boolean);
+      }
+
+      function value(name) {
+        return form.elements[name].value.trim();
+      }
+
+      function buildList(items) {
+        return items.length ? items.map((item, index) => `${index + 1}. ${item}`).join("\n") : "Needs owner input.";
+      }
+
+      function buildBullets(items) {
+        return items.length ? items.map((item) => `- ${item}`).join("\n") : "- Needs owner input.";
+      }
+
+      function update() {
+        const required = ["name", "purpose", "owner", "operator", "trigger", "inputs", "tools"];
+        const completed = required.filter((field) => value(field)).length;
+        const steps = lines(value("steps"));
+        const checks = lines(value("checks"));
+        const score = completed + Math.min(steps.length, 3) + Math.min(checks.length, 2);
+
+        readiness.textContent = score >= 11 ? "Review" : "Draft";
+        readinessNote.textContent = score >= 11
+          ? "This draft has enough structure for owner review."
+          : "Add more steps and quality checks before using this SOP.";
+
+        output.value = [
+          `# SOP: ${value("name") || "Needs owner input"}`,
+          "",
+          "## Purpose",
+          value("purpose") || "Needs owner input.",
+          "",
+          "## Scope",
+          "This SOP applies to the process described below. The process owner must confirm scope before use.",
+          "",
+          "## Owner",
+          value("owner") || "Needs owner input.",
+          "",
+          "## Operator",
+          value("operator") || "Needs owner input.",
+          "",
+          "## Trigger",
+          value("trigger") || "Needs owner input.",
+          "",
+          "## Inputs",
+          buildBullets(value("inputs").split(",").map((item) => item.trim()).filter(Boolean)),
+          "",
+          "## Tools",
+          buildBullets(value("tools").split(",").map((item) => item.trim()).filter(Boolean)),
+          "",
+          "## Procedure",
+          buildList(steps),
+          "",
+          "## Quality Checks",
+          buildBullets(checks),
+          "",
+          "## Escalation Rules",
+          buildBullets(lines(value("escalation"))),
+          "",
+          "## Review Cadence",
+          "Review after first real use, then monthly or whenever the process changes.",
+          "",
+          "## Open Questions",
+          "- What did the operator need to ask after using this SOP?",
+          "- Which step caused the most confusion?",
+          "- Which quality check prevented rework?"
+        ].join("\n");
+      }
+
+      form.addEventListener("input", update);
+      copyButton.addEventListener("click", async () => {
+        output.select();
+        try {
+          await navigator.clipboard.writeText(output.value);
+          copyButton.textContent = "Copied";
+          setTimeout(() => (copyButton.textContent = "Copy SOP"), 1400);
+        } catch {
+          document.execCommand("copy");
+        }
+      });
+      update();
+    </script>
+  </body>
+</html>
