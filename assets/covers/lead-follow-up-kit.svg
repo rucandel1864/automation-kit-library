@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">AI Lead Follow-Up Kit cover</title>
+  <desc id="desc">Product cover for an AI lead follow-up workflow kit.</desc>
+  <rect width="1200" height="675" fill="#f7f7f3"/>
+  <rect x="70" y="70" width="1060" height="535" rx="22" fill="#2f6f5e"/>
+  <rect x="130" y="130" width="430" height="56" rx="10" fill="#17201b"/>
+  <text x="154" y="166" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="700">AUTOMATION KIT LIBRARY</text>
+  <text x="130" y="284" fill="#ffffff" font-family="Georgia, serif" font-size="78" font-weight="600">AI Lead</text>
+  <text x="130" y="374" fill="#ffffff" font-family="Georgia, serif" font-size="78" font-weight="600">Follow-Up Kit</text>
+  <text x="132" y="438" fill="#e8eee9" font-family="Arial, sans-serif" font-size="28">Qualify, reply, task, and hand off.</text>
+  <g transform="translate(760 170)">
+    <rect width="270" height="340" rx="18" fill="#ffffff"/>
+    <circle cx="72" cy="76" r="32" fill="#c89b3c"/>
+    <rect x="118" y="58" width="120" height="14" rx="7" fill="#607067"/>
+    <rect x="118" y="84" width="86" height="10" rx="5" fill="#d7ddd4"/>
+    <path d="M70 140 L70 280" stroke="#d7ddd4" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="70" cy="160" r="18" fill="#2f6f5e"/>
+    <circle cx="70" cy="220" r="18" fill="#c89b3c"/>
+    <circle cx="70" cy="280" r="18" fill="#17201b"/>
+    <rect x="112" y="150" width="130" height="12" rx="6" fill="#607067"/>
+    <rect x="112" y="210" width="110" height="12" rx="6" fill="#607067"/>
+    <rect x="112" y="270" width="146" height="12" rx="6" fill="#607067"/>
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">AI Meeting Notes Kit cover</title>
+  <desc id="desc">Product cover for an AI meeting notes to action plan workflow kit.</desc>
+  <rect width="1200" height="675" fill="#f5f6f2"/>
+  <rect x="70" y="70" width="1060" height="535" rx="22" fill="#ffffff" stroke="#d9ded5" stroke-width="3"/>
+  <rect x="130" y="130" width="420" height="56" rx="10" fill="#17201b"/>
+  <text x="154" y="166" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="700">AUTOMATION KIT LIBRARY</text>
+  <text x="130" y="284" fill="#17201b" font-family="Georgia, serif" font-size="76" font-weight="600">AI Meeting Notes</text>
+  <text x="130" y="374" fill="#17201b" font-family="Georgia, serif" font-size="76" font-weight="600">to Action Plan</text>
+  <text x="132" y="438" fill="#607067" font-family="Arial, sans-serif" font-size="28">Summaries, owners, tasks, and follow-ups.</text>
+  <g transform="translate(760 170)">
+    <rect width="260" height="340" rx="18" fill="#17201b"/>
+    <rect x="30" y="42" width="150" height="14" rx="7" fill="#c89b3c"/>
+    <rect x="30" y="86" width="200" height="12" rx="6" fill="#c5d0ca"/>
+    <rect x="30" y="120" width="180" height="12" rx="6" fill="#c5d0ca"/>
+    <rect x="30" y="174" width="40" height="40" rx="8" fill="#2f6f5e"/>
+    <rect x="88" y="184" width="160" height="12" rx="6" fill="#ffffff"/>
+    <rect x="30" y="238" width="40" height="40" rx="8" fill="#c89b3c"/>
+    <rect x="88" y="248" width="140" height="12" rx="6" fill="#ffffff"/>
+  </g>
+</svg>
