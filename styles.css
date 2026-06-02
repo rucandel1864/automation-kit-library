@@ -230,6 +230,32 @@ h3 {
   padding: 2px 5px;
 }
 
+label {
+  color: var(--ink);
+  display: grid;
+  font-size: 14px;
+  font-weight: 720;
+  gap: 8px;
+}
+
+select,
+input {
+  background: #fbfcfa;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--ink);
+  font: inherit;
+  min-height: 44px;
+  padding: 10px 12px;
+  width: 100%;
+}
+
+select:focus,
+input:focus {
+  border-color: var(--accent);
+  outline: 3px solid rgba(47, 111, 94, 0.16);
+}
+
 footer {
   border-top: 1px solid var(--line);
   color: var(--muted);

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Workflow ROI Calculator</title>
+    <meta name="description" content="Estimate the monthly value of using AI workflow kits for repetitive small business admin work." />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html"><span class="brand-mark">A</span><span>Automation Kit Library</span></a>
+      <nav><a href="../products/starter-bundle.html">Bundle</a><a href="../articles/ai-email-triage.html">Guides</a></nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <h1>AI workflow ROI calculator.</h1>
+          <p>Estimate whether a repetitive inbox, meeting, lead follow-up, or SOP workflow is worth automating with a self-serve kit.</p>
+          <div class="hero-actions">
+            <a class="button secondary" href="../products/starter-bundle.html">View operations bundle</a>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Estimated monthly value</h2>
+          <p class="price" id="monthlyValue">$0</p>
+          <p id="recommendation">Adjust the inputs to see the estimated value.</p>
+        </div>
+      </section>
+      <section class="section split">
+        <div>
+          <h2>Workflow inputs</h2>
+          <p class="lead">Use conservative numbers. The calculator is a planning tool, not a promise of results.</p>
+        </div>
+        <form class="card" id="roiForm">
+          <label>
+            Workflow type
+            <select name="workflow">
+              <option value="email">Email triage</option>
+              <option value="meeting">Meeting notes</option>
+              <option value="lead">Lead follow-up</option>
+              <option value="sop">SOP generation</option>
+            </select>
+          </label>
+          <label>
+            Runs per week
+            <input name="runs" type="number" min="0" step="1" value="25" />
+          </label>
+          <label>
+            Minutes saved per run
+            <input name="minutes" type="number" min="0" step="1" value="8" />
+          </label>
+          <label>
+            Hourly cost
+            <input name="rate" type="number" min="0" step="5" value="50" />
+          </label>
+          <label>
+            Monthly rework or missed-opportunity cost avoided
+            <input name="avoided" type="number" min="0" step="25" value="0" />
+          </label>
+        </form>
+      </section>
+      <section class="section">
+        <div class="cards">
+          <article class="card">
+            <h3>Email triage</h3>
+            <p>Use when emails are repetitive, easy to review, and expensive to sort manually.</p>
+          </article>
+          <article class="card">
+            <h3>Meeting notes</h3>
+            <p>Use when follow-ups, owners, or action items are often unclear after calls.</p>
+          </article>
+          <article class="card">
+            <h3>SOP generation</h3>
+            <p>Use when repeatable processes are trapped in notes, chats, or one person's head.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer>Automation Kit Library. This calculator is informational and does not guarantee savings.</footer>
+    <script>
+      const form = document.querySelector("#roiForm");
+      const valueEl = document.querySelector("#monthlyValue");
+      const recEl = document.querySelector("#recommendation");
+
+      function formatMoney(value) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0
+        }).format(value);
+      }
+
+      function calculate() {
+        const runs = Number(form.elements.runs.value || 0);
+        const minutes = Number(form.elements.minutes.value || 0);
+        const rate = Number(form.elements.rate.value || 0);
+        const avoided = Number(form.elements.avoided.value || 0);
+        const monthly = runs * minutes / 60 * rate * 4.33 + avoided;
+        valueEl.textContent = formatMoney(monthly);
+
+        if (monthly >= 1000) {
+          recEl.textContent = "This workflow likely justifies a paid kit if the assumptions are realistic.";
+        } else if (monthly >= 250) {
+          recEl.textContent = "This may be worth testing with one narrow workflow before buying a bundle.";
+        } else {
+          recEl.textContent = "The workflow may be too small unless quality, speed, or consistency matters more than time savings.";
+        }
+      }
+
+      form.addEventListener("input", calculate);
+      calculate();
+    </script>
+  </body>
+</html>
