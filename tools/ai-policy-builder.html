@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Usage Policy Builder</title>
+    <meta name="description" content="Generate a copyable draft AI usage policy for small business workflow rollouts." />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html"><span class="brand-mark">A</span><span>Automation Kit Library</span></a>
+      <nav>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../tools/business-case-builder.html">Business case</a>
+        <a href="../products/business-license.html">Business License</a>
+        <a href="../free/business-governance-mini-pack.html">Governance sample</a>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <h1>AI usage policy builder.</h1>
+          <p>Create a practical internal policy draft for AI-assisted business workflows. The draft stays in your browser and should be reviewed before use.</p>
+          <div class="hero-actions">
+            <a class="button secondary" href="../products/business-license.html">View business license</a>
+            <a class="button secondary" href="../free/business-governance-mini-pack.html">Get governance sample</a>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Policy readiness</h2>
+          <p class="price" id="readiness">Draft</p>
+          <p id="readinessNote">Fill in the rollout details to generate a policy.</p>
+        </div>
+      </section>
+      <section class="section split">
+        <div>
+          <h2>Policy inputs</h2>
+          <p class="lead">Use plain operating rules. Avoid entering confidential business data, customer data, credentials, or regulated information.</p>
+        </div>
+        <form class="card" id="policyForm">
+          <label>Organization or team <input name="team" value="Operations team" /></label>
+          <label>Policy owner <input name="owner" value="Head of Operations" /></label>
+          <label>Review cadence <select name="cadence"><option>Monthly for the first quarter</option><option>Quarterly</option><option>After each major workflow change</option></select></label>
+          <label>Allowed workflows <textarea name="allowed">Drafting internal SOPs
+Summarizing meeting notes
+Classifying non-sensitive inbox messages
+Drafting lead follow-up for human review</textarea></label>
+          <label>Prohibited inputs <textarea name="prohibited">Passwords, API keys, or private credentials
+Customer payment details
+Medical, legal, financial, or regulated personal information
+Confidential contracts or unreleased financials</textarea></label>
+          <label>Human approval required before <textarea name="approval">Sending external messages
+Changing customer records
+Publishing documents
+Making commitments on behalf of the company</textarea></label>
+          <label>Approved tools <input name="tools" value="ChatGPT, Claude, Gemini, Microsoft Copilot" /></label>
+          <label>Escalation owner <input name="escalation" value="Operations lead" /></label>
+        </form>
+      </section>
+      <section class="section split">
+        <div>
+          <h2>Copyable policy draft</h2>
+          <p class="lead">Paste this into your internal docs, then have the policy owner, security owner, and department leads review it.</p>
+          <button id="copyButton" type="button">Copy policy</button>
+        </div>
+        <textarea id="output" readonly></textarea>
+      </section>
+    </main>
+    <footer>Automation Kit Library. This draft is operational guidance, not legal, security, or compliance advice.</footer>
+    <script>
+      const form = document.querySelector("#policyForm");
+      const output = document.querySelector("#output");
+      const readiness = document.querySelector("#readiness");
+      const readinessNote = document.querySelector("#readinessNote");
+      const copyButton = document.querySelector("#copyButton");
+
+      function value(name) {
+        return form.elements[name].value.trim();
+      }
+
+      function lines(text) {
+        return String(text || "").split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+      }
+
+      function bullets(items) {
+        return items.length ? items.map((item) => `- ${item}`).join("\n") : "- Needs owner input.";
+      }
+
+      function update() {
+        const allowed = lines(value("allowed"));
+        const prohibited = lines(value("prohibited"));
+        const approvals = lines(value("approval"));
+        const score = [value("team"), value("owner"), value("tools"), value("escalation")].filter(Boolean).length + Math.min(allowed.length, 3) + Math.min(prohibited.length, 3) + Math.min(approvals.length, 3);
+
+        readiness.textContent = score >= 12 ? "Review" : "Draft";
+        readinessNote.textContent = score >= 12
+          ? "This draft has enough structure for owner review."
+          : "Add allowed workflows, prohibited inputs, and approval gates.";
+
+        output.value = [
+          `# AI Usage Policy: ${value("team") || "Needs owner input"}`,
+          "",
+          "## Purpose",
+          "This policy defines how the team may use AI tools for internal workflow support while protecting sensitive data, customer trust, and operational quality.",
+          "",
+          "## Owner",
+          value("owner") || "Needs owner input.",
+          "",
+          "## Approved Tools",
+          bullets(value("tools").split(",").map((item) => item.trim()).filter(Boolean)),
+          "",
+          "## Allowed Use Cases",
+          bullets(allowed),
+          "",
+          "## Prohibited Inputs",
+          bullets(prohibited),
+          "",
+          "## Human Approval Gates",
+          "AI output must be reviewed by a qualified person before any of the following actions:",
+          bullets(approvals),
+          "",
+          "## Output Review Standard",
+          bullets([
+            "Verify facts against source systems or documents.",
+            "Remove confidential information that does not need to be shared.",
+            "Confirm tone, commitments, pricing, dates, owners, and deadlines before external use.",
+            "Keep a human owner accountable for final decisions."
+          ]),
+          "",
+          "## Escalation",
+          `Escalate unclear, sensitive, regulated, or high-impact use cases to ${value("escalation") || "the assigned escalation owner"} before using AI output.`,
+          "",
+          "## Review Cadence",
+          value("cadence") || "Needs owner input.",
+          "",
+          "## Rollout Note",
+          "Start with low-risk workflows, document the working prompt and SOP, collect operator feedback, and expand only after review."
+        ].join("\n");
+      }
+
+      form.addEventListener("input", update);
+      form.addEventListener("change", update);
+      copyButton.addEventListener("click", async () => {
+        output.select();
+        try {
+          await navigator.clipboard.writeText(output.value);
+          copyButton.textContent = "Copied";
+          setTimeout(() => (copyButton.textContent = "Copy policy"), 1400);
+        } catch {
+          document.execCommand("copy");
+        }
+      });
+      update();
+    </script>
+  </body>
+</html>
