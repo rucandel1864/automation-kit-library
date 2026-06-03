@@ -1,0 +1,32 @@
+name: Purchase intent
+description: Leave a public buying signal for an Automation Kit Library package.
+title: "Purchase intent: "
+labels:
+  - purchase-intent
+body:
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      options:
+        - Team License ($499 launch target)
+        - Operations Bundle ($99 launch target)
+        - Individual kit ($29 launch target)
+    validations:
+      required: true
+  - type: input
+    id: timing
+    attributes:
+      label: Purchase timing
+      placeholder: Example: this week, this month, later
+  - type: textarea
+    id: workflows
+    attributes:
+      label: Workflows needed
+      description: Do not include private customer, employee, or business-sensitive data.
+      placeholder: Inbox triage, meeting notes, lead follow-up, SOP documentation
+  - type: input
+    id: contact
+    attributes:
+      label: Contact method (optional)
+      description: Only add something you are comfortable posting publicly.
