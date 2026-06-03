@@ -245,6 +245,33 @@ pre code {
   white-space: pre;
 }
 
+table {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-collapse: collapse;
+  border-radius: 8px;
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--line);
+  min-width: 190px;
+  padding: 14px;
+  text-align: left;
+  vertical-align: top;
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+th {
+  background: #edf2ee;
+}
+
 label {
   color: var(--ink);
   display: grid;
