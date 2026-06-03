@@ -9,6 +9,7 @@ body:
     attributes:
       label: Package
       options:
+        - Business License ($1,999 launch target)
         - Team License ($499 launch target)
         - Operations Bundle ($99 launch target)
         - Individual kit ($29 launch target)
