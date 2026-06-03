@@ -28,6 +28,7 @@ https://rucandel1864.github.io/automation-kit-library/
 - Governance mini pack: https://rucandel1864.github.io/automation-kit-library/free/business-governance-mini-pack.html
 - Governance mini pack release: https://github.com/rucandel1864/automation-kit-library/releases/tag/free-business-governance-mini-pack-v1
 - AI policy mini pack: https://rucandel1864.github.io/automation-kit-library/free/ai-policy-mini-pack.html
+- AI policy mini pack release: https://github.com/rucandel1864/automation-kit-library/releases/tag/free-ai-policy-mini-pack-v1
 - Email triage prompt: https://rucandel1864.github.io/automation-kit-library/prompts/email-triage-prompt.html
 - SOP generator prompt: https://rucandel1864.github.io/automation-kit-library/prompts/sop-generator-prompt.html
 
