@@ -24,6 +24,7 @@ https://rucandel1864.github.io/automation-kit-library/
 
 - ROI calculator: https://rucandel1864.github.io/automation-kit-library/tools/roi-calculator.html
 - SOP draft builder: https://rucandel1864.github.io/automation-kit-library/tools/sop-draft-builder.html
+- Free resources hub: https://rucandel1864.github.io/automation-kit-library/free/
 - Email triage mini pack: https://rucandel1864.github.io/automation-kit-library/free/email-triage-mini-pack.html
 - Governance mini pack: https://rucandel1864.github.io/automation-kit-library/free/business-governance-mini-pack.html
 - Governance mini pack release: https://github.com/rucandel1864/automation-kit-library/releases/tag/free-business-governance-mini-pack-v1
