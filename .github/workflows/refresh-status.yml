@@ -1,0 +1,133 @@
+name: Refresh public traction status
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * *"
+
+permissions:
+  contents: write
+  issues: read
+
+jobs:
+  refresh-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+
+      - name: Generate status page
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+
+          $issuesJson = gh issue list --repo $env:REPO --label purchase-intent --state all --limit 100 --json number,title,state,labels,createdAt,url
+          $parsedIssues = $issuesJson | ConvertFrom-Json
+          $issues = @()
+          if ($null -ne $parsedIssues) { $issues = @($parsedIssues) }
+
+          $businessCount = 0
+          $teamCount = 0
+          $bundleCount = 0
+          $otherCount = 0
+
+          foreach ($issue in $issues) {
+            $labelNames = @($issue.labels | ForEach-Object { $_.name })
+            if ($labelNames -contains "business-license") {
+              $businessCount += 1
+            } elseif ($labelNames -contains "team-license") {
+              $teamCount += 1
+            } elseif ($labelNames -contains "bundle") {
+              $bundleCount += 1
+            } else {
+              $otherCount += 1
+            }
+          }
+
+          $estimatedPipeline = ($businessCount * 1999) + ($teamCount * 499) + ($bundleCount * 99)
+
+          $releaseRows = @()
+          $totalDownloads = 0
+          $releases = gh release list --repo $env:REPO --limit 50 --json tagName,name,isLatest,createdAt | ConvertFrom-Json
+          foreach ($release in $releases) {
+            $details = gh release view $release.tagName --repo $env:REPO --json assets,url,name,tagName | ConvertFrom-Json
+            foreach ($asset in $details.assets) {
+              $totalDownloads += [int]$asset.downloadCount
+              $releaseRows += "<tr><td><a href=""$($details.url)"">$($details.name)</a></td><td>$($asset.name)</td><td>$($asset.downloadCount)</td></tr>"
+            }
+          }
+
+          if ($releaseRows.Count -eq 0) {
+            $releaseRows = @("<tr><td colspan=""3"">No public release assets found.</td></tr>")
+          }
+
+          $checkedAt = (Get-Date).ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss 'UTC'")
+          $html = @"
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <title>Public Traction Status | Automation Kit Library</title>
+              <meta name="description" content="Current public traction, purchase intent, and revenue status for Automation Kit Library." />
+              <link rel="stylesheet" href="./styles.css" />
+            </head>
+            <body>
+              <header class="site-header">
+                <a class="brand" href="./index.html"><span class="brand-mark">A</span><span>Automation Kit Library</span></a>
+                <nav>
+                  <a href="./buy.html">Buy</a>
+                  <a href="./checkout-status.html">Checkout status</a>
+                  <a href="./products/business-license.html">Business License</a>
+                </nav>
+              </header>
+              <main class="article">
+                <h1>Public traction status</h1>
+                <p class="lead">Current evidence from GitHub releases, purchase-intent issues, and the revenue ledger. This page is intentionally conservative: intent is not revenue.</p>
+                <h2>Revenue</h2>
+                <table>
+                  <tr><th>Metric</th><th>Value</th></tr>
+                  <tr><td>Verified revenue</td><td>USD 0</td></tr>
+                  <tr><td>Revenue status</td><td>incomplete</td></tr>
+                  <tr><td>Completion target</td><td>USD 10,000/month verified revenue</td></tr>
+                </table>
+                <h2>Purchase Intent</h2>
+                <table>
+                  <tr><th>Metric</th><th>Value</th></tr>
+                  <tr><td>Total purchase-intent issues</td><td>$($issues.Count)</td></tr>
+                  <tr><td>Business-license intents</td><td>$businessCount</td></tr>
+                  <tr><td>Team-license intents</td><td>$teamCount</td></tr>
+                  <tr><td>Bundle intents</td><td>$bundleCount</td></tr>
+                  <tr><td>Estimated pipeline</td><td>USD $estimatedPipeline</td></tr>
+                </table>
+                <h2>Free Release Downloads</h2>
+                <table>
+                  <tr><th>Release</th><th>Asset</th><th>Downloads</th></tr>
+                  $($releaseRows -join "`n                ")
+                </table>
+                <p>Total public release downloads: $totalDownloads.</p>
+                <h2>Last Updated</h2>
+                <p>$checkedAt.</p>
+              </main>
+              <footer>Automation Kit Library. Public traction is not revenue until payment evidence exists.</footer>
+            </body>
+          </html>
+          "@
+
+          Set-Content -Path status.html -Value $html -Encoding utf8
+
+      - name: Commit status page if changed
+        shell: bash
+        run: |
+          if git diff --quiet -- status.html; then
+            echo "No status changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add status.html
+          git commit -m "Refresh public traction status"
+          git push
