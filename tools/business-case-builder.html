@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Workflow Business Case Builder</title>
+    <meta name="description" content="Generate a copyable internal approval memo for buying an AI workflow rollout package." />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html"><span class="brand-mark">A</span><span>Automation Kit Library</span></a>
+      <nav>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../products/business-license.html">Business License</a>
+        <a href="../free/business-governance-mini-pack.html">Governance sample</a>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <h1>AI workflow business case builder.</h1>
+          <p>Create a copyable internal approval memo for a self-serve AI workflow rollout. Nothing is submitted or stored.</p>
+          <div class="hero-actions">
+            <a class="button secondary" href="../products/business-license.html">View business license</a>
+            <a class="button secondary" href="../pricing.html">Compare pricing</a>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Recommended package</h2>
+          <p class="price" id="recommendation">Business</p>
+          <p id="recommendationNote">Adjust the inputs to choose a package.</p>
+        </div>
+      </section>
+      <section class="section split">
+        <div>
+          <h2>Approval inputs</h2>
+          <p class="lead">Use realistic values and keep sensitive business details out of the draft until your team reviews it internally.</p>
+        </div>
+        <form class="card" id="caseForm">
+          <label>Company or team <input name="team" value="Operations team" /></label>
+          <label>Decision owner <input name="owner" value="Head of Operations" /></label>
+          <label>Users in rollout <input name="users" type="number" min="1" step="1" value="25" /></label>
+          <label>Workflows needed <input name="workflows" value="Inbox triage, meeting follow-through, SOP documentation" /></label>
+          <label>Runs per week <input name="runs" type="number" min="0" step="1" value="80" /></label>
+          <label>Minutes saved per run <input name="minutes" type="number" min="0" step="1" value="8" /></label>
+          <label>Average hourly cost <input name="rate" type="number" min="0" step="5" value="50" /></label>
+          <label>Risk controls <textarea name="controls">Human approval before external use
+Prohibited sensitive inputs
+Workflow owner and escalation owner
+Weekly rollout review</textarea></label>
+        </form>
+      </section>
+      <section class="section split">
+        <div>
+          <h2>Copyable approval memo</h2>
+          <p class="lead">Paste this into an internal document and revise before sharing. This is not legal, financial, or compliance advice.</p>
+          <button id="copyButton" type="button">Copy memo</button>
+        </div>
+        <textarea id="output" readonly></textarea>
+      </section>
+    </main>
+    <footer>Automation Kit Library. The Business License is self-serve and does not include custom implementation.</footer>
+    <script>
+      const form = document.querySelector("#caseForm");
+      const output = document.querySelector("#output");
+      const copyButton = document.querySelector("#copyButton");
+      const recommendation = document.querySelector("#recommendation");
+      const recommendationNote = document.querySelector("#recommendationNote");
+
+      function field(name) {
+        return form.elements[name].value.trim();
+      }
+
+      function money(value) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0
+        }).format(value);
+      }
+
+      function lines(value) {
+        return String(value || "").split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+      }
+
+      function bullets(items) {
+        return items.length ? items.map((item) => `- ${item}`).join("\n") : "- Needs owner input.";
+      }
+
+      function choosePackage(users) {
+        if (users > 10) return { name: "Business License", price: 1999, url: "../products/business-license.html" };
+        if (users > 1) return { name: "Team License", price: 499, url: "../products/team-license.html" };
+        return { name: "Operations Bundle", price: 99, url: "../products/starter-bundle.html" };
+      }
+
+      function update() {
+        const users = Number(field("users") || 1);
+        const runs = Number(field("runs") || 0);
+        const minutes = Number(field("minutes") || 0);
+        const rate = Number(field("rate") || 0);
+        const monthlyValue = runs * minutes / 60 * rate * 4.33;
+        const pack = choosePackage(users);
+        const paybackMonths = monthlyValue > 0 ? pack.price / monthlyValue : 0;
+
+        recommendation.textContent = pack.name.replace(" License", "");
+        recommendationNote.textContent = `${pack.name} at ${money(pack.price)} launch target. Estimated monthly time value: ${money(monthlyValue)}.`;
+
+        output.value = [
+          `# Approval memo: ${pack.name}`,
+          "",
+          `Team: ${field("team") || "Needs owner input"}`,
+          `Decision owner: ${field("owner") || "Needs owner input"}`,
+          `Proposed package: ${pack.name}`,
+          `Launch price target: ${money(pack.price)}`,
+          "",
+          "## Request",
+          `Approve purchase of the ${pack.name} for a self-serve AI workflow rollout covering approximately ${users} internal user${users === 1 ? "" : "s"}.`,
+          "",
+          "## Workflows",
+          bullets(field("workflows").split(",").map((item) => item.trim()).filter(Boolean)),
+          "",
+          "## Expected Value",
+          `Estimated workflow runs per week: ${runs}`,
+          `Estimated minutes saved per run: ${minutes}`,
+          `Estimated monthly time value: ${money(monthlyValue)}`,
+          `Estimated payback period: ${monthlyValue > 0 ? paybackMonths.toFixed(1) : "N/A"} months`,
+          "",
+          "## Risk Controls",
+          bullets(lines(field("controls"))),
+          "",
+          "## Why Self-Serve First",
+          "The package lets the team standardize prompts, SOPs, review rules, and rollout governance before committing to custom automation or a services project.",
+          "",
+          "## Decision",
+          "Approve purchase, assign a workflow owner, and review adoption after 30 days."
+        ].join("\n");
+      }
+
+      form.addEventListener("input", update);
+      copyButton.addEventListener("click", async () => {
+        output.select();
+        try {
+          await navigator.clipboard.writeText(output.value);
+          copyButton.textContent = "Copied";
+          setTimeout(() => (copyButton.textContent = "Copy memo"), 1400);
+        } catch {
+          document.execCommand("copy");
+        }
+      });
+      update();
+    </script>
+  </body>
+</html>
