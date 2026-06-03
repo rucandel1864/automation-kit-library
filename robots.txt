@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://rucandel1864.github.io/automation-kit-library/sitemap.xml
+
+LLMs: https://rucandel1864.github.io/automation-kit-library/llms.txt

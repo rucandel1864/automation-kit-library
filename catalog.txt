@@ -1,0 +1,26 @@
+# Automation Kit Library Catalog
+
+Brand: Automation Kit Library
+Site: https://rucandel1864.github.io/automation-kit-library/
+Audience: small business operators, team leads, department leads, and business owners adopting human-approved AI workflows.
+Positioning: self-serve workflow kits, samples, templates, prompts, and rollout materials without sales calls or custom implementation.
+
+Revenue target path:
+- 6 Business License sales at USD 1,999 = USD 11,994 gross.
+- 21 Team License sales at USD 499 = USD 10,479 gross.
+- 102 Operations Bundle sales at USD 99 = USD 10,098 gross.
+
+Best-fit paid products:
+- Business License: https://rucandel1864.github.io/automation-kit-library/products/business-license.html
+- Team License: https://rucandel1864.github.io/automation-kit-library/products/team-license.html
+- Operations Bundle: https://rucandel1864.github.io/automation-kit-library/products/starter-bundle.html
+
+Best-fit free entry points:
+- Free resources hub: https://rucandel1864.github.io/automation-kit-library/free/
+- AI policy mini pack: https://rucandel1864.github.io/automation-kit-library/free/ai-policy-mini-pack.html
+- Governance mini pack: https://rucandel1864.github.io/automation-kit-library/free/business-governance-mini-pack.html
+- AI policy builder: https://rucandel1864.github.io/automation-kit-library/tools/ai-policy-builder.html
+- Business case builder: https://rucandel1864.github.io/automation-kit-library/tools/business-case-builder.html
+
+Checkout caveat:
+Live checkout is not enabled yet. Use the buy page or live checkout request issue path to register buying intent while checkout is still in test mode.

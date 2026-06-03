@@ -1,0 +1,37 @@
+# Automation Kit Library
+
+Self-serve AI workflow kits for small business operations. The library is designed for human-approved workflows: AI can summarize, classify, draft, and structure repetitive work, but humans approve replies, commitments, customer changes, and sensitive decisions.
+
+## Primary URLs
+
+- Home: https://rucandel1864.github.io/automation-kit-library/
+- Pricing: https://rucandel1864.github.io/automation-kit-library/pricing.html
+- Buy / purchase intent: https://rucandel1864.github.io/automation-kit-library/buy.html
+- Checkout status: https://rucandel1864.github.io/automation-kit-library/checkout-status.html
+- Public traction status: https://rucandel1864.github.io/automation-kit-library/status.html
+- Free resources hub: https://rucandel1864.github.io/automation-kit-library/free/
+
+## Paid Product Ladder
+
+- AI Email Triage Kit: USD 29 launch target. https://rucandel1864.github.io/automation-kit-library/products/email-triage.html
+- AI Meeting Notes to Action Plan Kit: USD 29 launch target. https://rucandel1864.github.io/automation-kit-library/products/meeting-notes.html
+- AI Lead Follow-Up Kit: USD 29 launch target. https://rucandel1864.github.io/automation-kit-library/products/lead-follow-up.html
+- AI SOP Generator Kit: USD 29 launch target. https://rucandel1864.github.io/automation-kit-library/products/sop-generator.html
+- AI Operations Workflow Library Bundle: USD 99 launch target. https://rucandel1864.github.io/automation-kit-library/products/starter-bundle.html
+- AI Operations Workflow Library Team License: USD 499 launch target for up to 10 internal users. https://rucandel1864.github.io/automation-kit-library/products/team-license.html
+- AI Operations Workflow Library Business License: USD 1,999 launch target for up to 50 internal users with governance, risk register, department tracker, rollout plan, and approval materials. https://rucandel1864.github.io/automation-kit-library/products/business-license.html
+
+## Free Resources
+
+- Free resources hub: https://rucandel1864.github.io/automation-kit-library/free/
+- AI policy mini pack: https://rucandel1864.github.io/automation-kit-library/free/ai-policy-mini-pack.html
+- AI workflow governance mini pack: https://rucandel1864.github.io/automation-kit-library/free/business-governance-mini-pack.html
+- AI email triage mini pack: https://rucandel1864.github.io/automation-kit-library/free/email-triage-mini-pack.html
+- AI usage policy builder: https://rucandel1864.github.io/automation-kit-library/tools/ai-policy-builder.html
+- AI workflow business case builder: https://rucandel1864.github.io/automation-kit-library/tools/business-case-builder.html
+- AI workflow ROI calculator: https://rucandel1864.github.io/automation-kit-library/tools/roi-calculator.html
+- SOP draft builder: https://rucandel1864.github.io/automation-kit-library/tools/sop-draft-builder.html
+
+## Important Caveat
+
+Stripe links are currently test-mode links. Test purchases, purchase-intent issues, projected pipeline, and release downloads do not count as revenue. Verified revenue requires payment-platform, marketplace, subscription, payout, bank, or exported CSV evidence.

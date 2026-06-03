@@ -65,6 +65,32 @@
         "availability": "https://schema.org/PreOrder",
         "url": "https://rucandel1864.github.io/automation-kit-library/products/starter-bundle.html"
       }
+    },
+    {
+      "@type": "Product",
+      "name": "AI Operations Workflow Library Team License",
+      "description": "Team license for up to 10 internal users, including four AI workflow kits and rollout materials.",
+      "brand": { "@type": "Brand", "name": "Automation Kit Library" },
+      "offers": {
+        "@type": "Offer",
+        "price": "499",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/PreOrder",
+        "url": "https://rucandel1864.github.io/automation-kit-library/products/team-license.html"
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "AI Operations Workflow Library Business License",
+      "description": "Business license for up to 50 internal users, including AI workflow kits, governance templates, rollout plan, risk register, and approval materials.",
+      "brand": { "@type": "Brand", "name": "Automation Kit Library" },
+      "offers": {
+        "@type": "Offer",
+        "price": "1999",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/PreOrder",
+        "url": "https://rucandel1864.github.io/automation-kit-library/products/business-license.html"
+      }
     }
   ]
 }
