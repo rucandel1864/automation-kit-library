@@ -36,9 +36,13 @@ jobs:
           $teamCount = 0
           $bundleCount = 0
           $otherCount = 0
+          $checkoutRequestCount = 0
 
           foreach ($issue in $issues) {
             $labelNames = @($issue.labels | ForEach-Object { $_.name })
+            if ($labelNames -contains "checkout-request") {
+              $checkoutRequestCount += 1
+            }
             if ($labelNames -contains "business-license") {
               $businessCount += 1
             } elseif ($labelNames -contains "team-license") {
@@ -102,6 +106,7 @@ jobs:
                   <tr><th>Metric</th><th>Value</th></tr>
                   <tr><td>Total purchase-intent issues</td><td>$($issues.Count)</td></tr>
                   <tr><td>Business-license intents</td><td>$businessCount</td></tr>
+                  <tr><td>Live checkout requests</td><td>$checkoutRequestCount</td></tr>
                   <tr><td>Team-license intents</td><td>$teamCount</td></tr>
                   <tr><td>Bundle intents</td><td>$bundleCount</td></tr>
                   <tr><td>Estimated pipeline</td><td>USD $estimatedPipeline</td></tr>
