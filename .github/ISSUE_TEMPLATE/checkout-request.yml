@@ -1,0 +1,34 @@
+name: Live checkout request
+description: Ask to be notified when live checkout is available for a package.
+title: "Live checkout request: "
+labels:
+  - purchase-intent
+  - checkout-request
+body:
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      options:
+        - Business License ($1,999 launch target)
+        - Team License ($499 launch target)
+        - Operations Bundle ($99 launch target)
+        - Individual kit ($29 launch target)
+    validations:
+      required: true
+  - type: input
+    id: timing
+    attributes:
+      label: Purchase timing
+      placeholder: Example: ready now, this week, this month
+  - type: textarea
+    id: rollout
+    attributes:
+      label: Rollout context
+      description: Do not include private customer, employee, or business-sensitive data.
+      placeholder: Team size, workflows needed, package preference, and urgency.
+  - type: input
+    id: public_contact
+    attributes:
+      label: Public contact method (optional)
+      description: Only add something you are comfortable posting publicly.
