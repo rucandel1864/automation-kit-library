@@ -17,6 +17,7 @@ https://rucandel1864.github.io/automation-kit-library/
 - Free SOP Draft Builder.
 - Free AI Email Triage Mini Pack.
 - Free AI Workflow Governance Mini Pack.
+- Free AI Policy Mini Pack.
 - Free prompt-library pages.
 
 ## Free Resources
@@ -26,6 +27,7 @@ https://rucandel1864.github.io/automation-kit-library/
 - Email triage mini pack: https://rucandel1864.github.io/automation-kit-library/free/email-triage-mini-pack.html
 - Governance mini pack: https://rucandel1864.github.io/automation-kit-library/free/business-governance-mini-pack.html
 - Governance mini pack release: https://github.com/rucandel1864/automation-kit-library/releases/tag/free-business-governance-mini-pack-v1
+- AI policy mini pack: https://rucandel1864.github.io/automation-kit-library/free/ai-policy-mini-pack.html
 - Email triage prompt: https://rucandel1864.github.io/automation-kit-library/prompts/email-triage-prompt.html
 - SOP generator prompt: https://rucandel1864.github.io/automation-kit-library/prompts/sop-generator-prompt.html
 
