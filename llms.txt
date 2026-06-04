@@ -13,6 +13,7 @@ Self-serve AI workflow kits for small business operations. The library is design
 
 ## Paid Product Ladder
 
+- AI Policy Starter Kit: USD 19 launch target. Lowest-friction paid entry point for AI usage rules and approval gates. https://rucandel1864.github.io/automation-kit-library/products/ai-policy-starter-kit.html
 - AI Email Triage Kit: USD 29 launch target. https://rucandel1864.github.io/automation-kit-library/products/email-triage.html
 - AI Meeting Notes to Action Plan Kit: USD 29 launch target. https://rucandel1864.github.io/automation-kit-library/products/meeting-notes.html
 - AI Lead Follow-Up Kit: USD 29 launch target. https://rucandel1864.github.io/automation-kit-library/products/lead-follow-up.html

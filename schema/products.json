@@ -3,6 +3,19 @@
   "@graph": [
     {
       "@type": "Product",
+      "name": "AI Policy Starter Kit",
+      "description": "Low-friction AI usage policy kit with approval gates, prohibited-input rules, review agenda, and manager announcement.",
+      "brand": { "@type": "Brand", "name": "Automation Kit Library" },
+      "offers": {
+        "@type": "Offer",
+        "price": "19",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/PreOrder",
+        "url": "https://rucandel1864.github.io/automation-kit-library/products/ai-policy-starter-kit.html"
+      }
+    },
+    {
+      "@type": "Product",
       "name": "AI Email Triage Kit",
       "description": "Prompts, SOPs, and workflow templates for AI-assisted email triage.",
       "brand": { "@type": "Brand", "name": "Automation Kit Library" },

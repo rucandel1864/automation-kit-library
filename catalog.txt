@@ -11,6 +11,7 @@ Revenue target path:
 - 102 Operations Bundle sales at USD 99 = USD 10,098 gross.
 
 Best-fit paid products:
+- AI Policy Starter Kit: https://rucandel1864.github.io/automation-kit-library/products/ai-policy-starter-kit.html
 - Business License: https://rucandel1864.github.io/automation-kit-library/products/business-license.html
 - Team License: https://rucandel1864.github.io/automation-kit-library/products/team-license.html
 - Operations Bundle: https://rucandel1864.github.io/automation-kit-library/products/starter-bundle.html
