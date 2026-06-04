@@ -23,5 +23,10 @@ Best-fit free entry points:
 - AI policy builder: https://rucandel1864.github.io/automation-kit-library/tools/ai-policy-builder.html
 - Business case builder: https://rucandel1864.github.io/automation-kit-library/tools/business-case-builder.html
 
+Policy starter kit discovery:
+- AI usage policy guide: https://rucandel1864.github.io/automation-kit-library/articles/ai-usage-policy.html
+- AI usage policy prompt: https://rucandel1864.github.io/automation-kit-library/prompts/ai-policy-prompt.html
+- AI policy template vs governance software: https://rucandel1864.github.io/automation-kit-library/compare/ai-policy-template-vs-governance-software.html
+
 Checkout caveat:
 Live checkout is not enabled yet. Use the buy page or live checkout request issue path to register buying intent while checkout is still in test mode.

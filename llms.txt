@@ -33,6 +33,12 @@ Self-serve AI workflow kits for small business operations. The library is design
 - AI workflow ROI calculator: https://rucandel1864.github.io/automation-kit-library/tools/roi-calculator.html
 - SOP draft builder: https://rucandel1864.github.io/automation-kit-library/tools/sop-draft-builder.html
 
+## Searchable Guides
+
+- How to write an AI usage policy for a small business: https://rucandel1864.github.io/automation-kit-library/articles/ai-usage-policy.html
+- AI usage policy prompt: https://rucandel1864.github.io/automation-kit-library/prompts/ai-policy-prompt.html
+- AI policy template vs governance software: https://rucandel1864.github.io/automation-kit-library/compare/ai-policy-template-vs-governance-software.html
+
 ## Important Caveat
 
 Stripe links are currently test-mode links. Test purchases, purchase-intent issues, projected pipeline, and release downloads do not count as revenue. Verified revenue requires payment-platform, marketplace, subscription, payout, bank, or exported CSV evidence.
