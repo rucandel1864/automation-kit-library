@@ -35,6 +35,7 @@ jobs:
           $businessCount = 0
           $teamCount = 0
           $bundleCount = 0
+          $policyStarterCount = 0
           $otherCount = 0
           $checkoutRequestCount = 0
 
@@ -43,7 +44,9 @@ jobs:
             if ($labelNames -contains "checkout-request") {
               $checkoutRequestCount += 1
             }
-            if ($labelNames -contains "business-license") {
+            if ($labelNames -contains "policy-starter-kit") {
+              $policyStarterCount += 1
+            } elseif ($labelNames -contains "business-license") {
               $businessCount += 1
             } elseif ($labelNames -contains "team-license") {
               $teamCount += 1
@@ -54,7 +57,7 @@ jobs:
             }
           }
 
-          $estimatedPipeline = ($businessCount * 1999) + ($teamCount * 499) + ($bundleCount * 99)
+          $estimatedPipeline = ($policyStarterCount * 19) + ($businessCount * 1999) + ($teamCount * 499) + ($bundleCount * 99)
 
           $releaseRows = @()
           $totalDownloads = 0
@@ -105,6 +108,7 @@ jobs:
                 <table>
                   <tr><th>Metric</th><th>Value</th></tr>
                   <tr><td>Total purchase-intent issues</td><td>$($issues.Count)</td></tr>
+                  <tr><td>Policy-starter-kit intents</td><td>$policyStarterCount</td></tr>
                   <tr><td>Business-license intents</td><td>$businessCount</td></tr>
                   <tr><td>Live checkout requests</td><td>$checkoutRequestCount</td></tr>
                   <tr><td>Team-license intents</td><td>$teamCount</td></tr>

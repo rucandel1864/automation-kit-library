@@ -9,6 +9,7 @@ body:
     attributes:
       label: Package
       options:
+        - AI Policy Starter Kit ($19 launch target)
         - Business License ($1,999 launch target)
         - Team License ($499 launch target)
         - Operations Bundle ($99 launch target)
