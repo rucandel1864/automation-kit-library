@@ -58,6 +58,9 @@ jobs:
           }
 
           $estimatedPipeline = ($policyStarterCount * 19) + ($businessCount * 1999) + ($teamCount * 499) + ($bundleCount * 99)
+          $directorySubmitted = 3
+          $directoryListed = 1
+          $directoryRetry = 1
 
           $releaseRows = @()
           $totalDownloads = 0
@@ -115,6 +118,14 @@ jobs:
                   <tr><td>Bundle intents</td><td>$bundleCount</td></tr>
                   <tr><td>Estimated pipeline</td><td>USD $estimatedPipeline</td></tr>
                 </table>
+                <h2>Directory Distribution</h2>
+                <table>
+                  <tr><th>Metric</th><th>Value</th></tr>
+                  <tr><td>Submitted directory channels</td><td>$directorySubmitted</td></tr>
+                  <tr><td>Live listing checks passed</td><td>$directoryListed</td></tr>
+                  <tr><td>Retry channels</td><td>$directoryRetry</td></tr>
+                </table>
+                <p>Directory listings are distribution evidence only. They do not count as revenue.</p>
                 <h2>Free Release Downloads</h2>
                 <table>
                   <tr><th>Release</th><th>Asset</th><th>Downloads</th></tr>
